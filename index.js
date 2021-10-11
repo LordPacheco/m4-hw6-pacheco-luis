@@ -11,6 +11,7 @@ function getPizzaOrder() {
   var pizza = {
     // set the 'cost' property to the basePrice
     // YOUR CODE HERE
+    cost: basePrice
   }
 
   var crust = prompt(
@@ -22,6 +23,9 @@ function getPizzaOrder() {
   // if the user specified 'thick' crust, add thickCrustUpcharge
   // to pizza.cost
   // YOUR CODE HERE
+   // if(this crust
+     // pizza.cost = pizza.cost + thickCrustUpcharge//
+  
 
   var toppings = prompt("Please enter additional toppings (comma separated)")
   // HINT: prompt() will return an empty string "" if the user presses 'OK' without entering a value
@@ -30,12 +34,23 @@ function getPizzaOrder() {
   // if the user has added toppings, add toppingsFee multiplied by
   // the number of toppings added to pizza.cost
   // YOUR CODE HERE
+  if(typeof toppings === 'string' && toppings){
+    pizza.toppings = toppings.trim().toLowerCase().split(",")
+    if(pizza.toppings.length >= 1) {
+      pizza.cost += pizza.toppings.length * toppingsFee
+    }
+  } else {
+    pizza.toppings = []
+  }
 
   var extraCheese = confirm("Would you like extra cheese?")
   // HINT: confirm() returns a boolean
   // if the user specifies extra cheese, set pizza.extraCheese to true or false
   // if the user specifies extra cheese, add extraCheeseUpcharge to pizza.cost
   // YOUR CODE HERE
+  pizza.extraCheese = extraCheese
+  if (pizza.extraCheese === true)
+  pizza.cost += extraCheeseUpcharge
 
   var isDelivery = confirm("Is your order for Delivery?")
   // HINT: confirm() returns a boolean
@@ -43,6 +58,9 @@ function getPizzaOrder() {
   // if order is NOT for delivery, set pizza.saleType to "take-out"
   // if order if for delivery, add deliveryFee to pizza.cost
   // YOUR CODE HERE
+  pizza.isDelivery = isDelivery
+  if (pizza.isDelivery === true)
+  pizza.cost = pizza.cost + deliveryFee
 
   return pizza
 }
